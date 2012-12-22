@@ -37,9 +37,9 @@ Development files for mate-menus
 
 %prep
 %setup -q
-NOCONFIGURE=1 ./autogen.sh
 
 %build
+NOCONFIGURE=1 ./autogen.sh
 %configure \
 	--disable-static \
 	--enable-python \
