@@ -2,23 +2,21 @@ Summary:	Displays menus for MATE Desktop
 Name:		mate-menus
 Version:	1.5.0
 Release:	1
-License:	GPLv2+ and LGPLv2+
+License:	GPL v2+ and LGPL v2+
 Group:		X11/Applications
-URL:		http://mate-desktop.org
 Source0:	http://pub.mate-desktop.org/releases/1.5/%{name}-%{version}.tar.xz
 # Source0-md5:	fc36e94245d8508cda14c2cd436aad5a
+URL:		http://wiki.mate-desktop.org/mate-menus
 BuildRequires:	gobject-introspection-devel
-BuildRequires:	mate-common
+BuildRequires:	intltool >= 0.40.0
+BuildRequires:	mate-common >= 1.5
 BuildRequires:	python-devel
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-# we don't want to provide private python extension libs
-#filter_provides_in %{python_sitearch}/.*\.so$
-
 %description
-Displays menus for MATE Desktop
+Displays menus for MATE Desktop.
 
 %package libs
 Summary:	Shared libraries for mate-menus
