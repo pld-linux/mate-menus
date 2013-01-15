@@ -43,7 +43,10 @@ NOCONFIGURE=1 ./autogen.sh
 	--enable-python \
 	--enable-introspection=yes
 
-%{__make} \
+# XXX: libtool it creates is broken. fix is to use libtool from system
+# http://sprunge.us/fIIF
+%{__make} -j1 \
+	LIBTOOL=libtool \
 	V=1
 
 %install
@@ -51,11 +54,11 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/libmate-menu.la
-%{__rm} $RPM_BUILD_ROOT%{py_sitedir}/matemenu.la
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libmate-menu.{a,la}
+%{__rm} $RPM_BUILD_ROOT%{py_sitedir}/matemenu.{a,la}
 
-rm -r $RPM_BUILD_ROOT%{_localedir}/gn
-rm -r $RPM_BUILD_ROOT%{_localedir}/io
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/gn
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/io
 
 %find_lang %{name}
 
