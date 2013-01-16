@@ -1,0 +1,73 @@
+restore XDG_MENU_PREFIX functionality
+
+23:19:05  glen> hmm, xdg menus does not seem to work
+23:19:07  glen> i mean $XDG_MENU_PREFIX
+23:19:09  glen> is not respected
+23:19:51  glen> 23:19:38 root[load: 3.16]@blodnatt xdg/menus# ls -l /etc/xdg/menus/${XDG_MENU_PREFIX}applications.menu
+23:19:51  glen> -rw-r--r-- 1 root root 23K 18. mai    2012 /etc/xdg/menus/applnk-applications.menu
+
+seems perberos just renamed the file not to conflict file installed by GNOME
+
+additionally load mate-applications.menu if XDG_MENU_PREFIX is not set, as this
+is how we package mate applications.menu.
+--- mate-menus-1.5.0/./libmenu/matemenu-tree.c~	2012-10-11 11:26:03.000000000 +0300
++++ mate-menus-1.5.0/./libmenu/matemenu-tree.c	2013-01-15 23:41:33.733159313 +0200
+@@ -539,7 +539,7 @@
+ 	{
+ 		matemenu_tree_remove_menu_file_monitors (tree);
+ 
+-		if (strcmp(tree->basename, "mate-applications.menu") == 0 && g_getenv("XDG_MENU_PREFIX"))
++		if (strcmp(tree->basename, "applications.menu") == 0 && g_getenv("XDG_MENU_PREFIX"))
+ 		{
+ 			char* prefixed_basename;
+ 			prefixed_basename = g_strdup_printf("%s%s", g_getenv("XDG_MENU_PREFIX"), tree->basename);
+@@ -1895,7 +1895,7 @@
+ 	found = FALSE;
+ 	menu_file = g_strconcat(menu_name, ".menu", NULL);
+ 
+-	if (strcmp(menu_file, "mate-applications.menu") == 0 && g_getenv("XDG_MENU_PREFIX"))
++	if (strcmp(menu_file, "applications.menu") == 0 && g_getenv("XDG_MENU_PREFIX"))
+ 	{
+ 		char* prefixed_basename;
+ 		prefixed_basename = g_strdup_printf("%s%s", g_getenv("XDG_MENU_PREFIX"), menu_file);
+--- mate-menus-1.5.0/util/test-menu-spec.c~	2012-10-11 11:26:03.000000000 +0300
++++ mate-menus-1.5.0/util/test-menu-spec.c	2013-01-15 23:36:26.719020435 +0200
+@@ -191,8 +191,7 @@
+ 		flags |= MATEMENU_TREE_FLAGS_INCLUDE_NODISPLAY;
+ 	}
+ 
+-	// Usamos applications.menu is existe. Para compatibilidad con GNOME
+-	MateMenuTree* tree = matemenu_tree_lookup(menu_file ? menu_file : "mate-applications.menu", flags);
++	MateMenuTree* tree = matemenu_tree_lookup(menu_file ? menu_file : "applications.menu", flags);
+ 
+ 	g_assert(tree != NULL);
+ 
+--- mate-menus-1.5.0/util/mate-menus-ls.py~	2012-10-11 11:26:03.000000000 +0300
++++ mate-menus-1.5.0/util/mate-menus-ls.py	2013-01-15 23:37:38.595663893 +0200
+@@ -72,7 +72,7 @@
+     if options.file:
+         menu_file = options.file
+     else:
+-        menu_file = 'mate-applications.menu'
++        menu_file = 'applications.menu'
+ 
+     flags = matemenu.FLAGS_NONE
+     if options.exclude:
+--- mate-menus-1.5.0/libmenu/matemenu-tree.c~	2013-01-16 11:12:55.000000000 +0200
++++ mate-menus-1.5.0/libmenu/matemenu-tree.c	2013-01-16 12:36:08.224428926 +0200
+@@ -1903,6 +1903,15 @@
+ 		g_free(prefixed_basename);
+ 	}
+ 
++	// load mate-applications.menu
++	if (!found && !g_getenv("XDG_MENU_PREFIX"))
++	{
++		char* prefixed_basename;
++		prefixed_basename = g_strdup_printf("mate-%s", menu_file);
++		found = load_parent_merge_file_from_basename(tree, loaded_menu_files, layout, prefixed_basename, canonical_basedir);
++		g_free(prefixed_basename);
++	}
++
+ 	if (!found)
+ 	{
+ 		found = load_parent_merge_file_from_basename(tree, loaded_menu_files, layout, menu_file, canonical_basedir);

@@ -1,12 +1,13 @@
 Summary:	Displays menus for MATE Desktop
 Name:		mate-menus
 Version:	1.5.0
-Release:	1
+Release:	2
 License:	GPL v2+ and LGPL v2+
 Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.5/%{name}-%{version}.tar.xz
 # Source0-md5:	fc36e94245d8508cda14c2cd436aad5a
 URL:		http://wiki.mate-desktop.org/mate-menus
+Patch0:		xdg-menu-prefix-compat.patch
 BuildRequires:	gobject-introspection-devel
 BuildRequires:	intltool >= 0.40.0
 BuildRequires:	mate-common >= 1.5
@@ -35,6 +36,7 @@ Development files for mate-menus
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 NOCONFIGURE=1 ./autogen.sh
