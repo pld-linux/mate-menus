@@ -12,6 +12,7 @@ BuildRequires:	gobject-introspection-devel
 BuildRequires:	intltool >= 0.40.0
 BuildRequires:	mate-common >= 1.5
 BuildRequires:	python-devel
+BuildRequires:	rpm-pythonprov
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
