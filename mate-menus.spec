@@ -1,11 +1,11 @@
 Summary:	Displays menus for MATE Desktop
 Name:		mate-menus
-Version:	1.5.0
-Release:	2
+Version:	1.6.0
+Release:	1
 License:	GPL v2+ and LGPL v2+
 Group:		X11/Applications
-Source0:	http://pub.mate-desktop.org/releases/1.5/%{name}-%{version}.tar.xz
-# Source0-md5:	fc36e94245d8508cda14c2cd436aad5a
+Source0:	http://pub.mate-desktop.org/releases/1.6/%{name}-%{version}.tar.xz
+# Source0-md5:	98937d51fb1e577b21a2b8552697bee8
 URL:		http://wiki.mate-desktop.org/mate-menus
 Patch0:		xdg-menu-prefix-compat.patch
 BuildRequires:	gobject-introspection-devel
@@ -42,23 +42,20 @@ Development files for mate-menus
 %build
 NOCONFIGURE=1 ./autogen.sh
 %configure \
+	--disable-silent-rules \
 	--disable-static \
 	--enable-python \
 	--enable-introspection=yes
 
-# XXX: libtool it creates is broken. fix is to use libtool from system
-# http://sprunge.us/fIIF
-%{__make} -j1 \
-	LIBTOOL=libtool \
-	V=1
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/libmate-menu.{a,la}
-%{__rm} $RPM_BUILD_ROOT%{py_sitedir}/matemenu.{a,la}
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libmate-menu.la
+%{__rm} $RPM_BUILD_ROOT%{py_sitedir}/matemenu.la
 
 %{__rm} -r $RPM_BUILD_ROOT%{_localedir}/gn
 %{__rm} -r $RPM_BUILD_ROOT%{_localedir}/io
