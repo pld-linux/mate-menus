@@ -18,7 +18,7 @@ BuildRequires:	gobject-introspection-devel >= 0.6.7
 BuildRequires:	intltool >= 0.40.0
 BuildRequires:	libtool >= 1:1.4.3
 BuildRequires:	mate-common >= 1.5
-BuildRequires:	python-devel >= 2.3
+BuildRequires:	python-devel >= 1:2.3
 BuildRequires:	rpm-pythonprov
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
@@ -94,7 +94,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/libmate-menu.la
 %{__rm} $RPM_BUILD_ROOT%{py_sitedir}/matemenu.la
-%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/cmn
 # just example
 %{__rm} -r $RPM_BUILD_ROOT%{_datadir}/mate-menus/examples
 # empty dir
