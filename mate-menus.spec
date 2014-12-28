@@ -12,7 +12,7 @@ Patch0:		xdg-menu-prefix-compat.patch
 URL:		http://wiki.mate-desktop.org/mate-menus
 BuildRequires:	autoconf >= 2.62
 BuildRequires:	automake >= 1:1.9
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	glib2-devel >= 1:2.15.2
 BuildRequires:	gobject-introspection-devel >= 0.6.7
 BuildRequires:	intltool >= 0.40.0
