@@ -2,7 +2,7 @@ Summary:	Displays menus for MATE Desktop
 Summary(pl.UTF-8):	Wyświetlanie menu w środowisku MATE Desktop
 Name:		mate-menus
 Version:	1.8.0
-Release:	1
+Release:	2
 # only (unpackaged) python example is GPL
 License:	LGPL v2+
 Group:		X11/Applications
