@@ -2,7 +2,7 @@ Summary:	Displays menus for MATE Desktop
 Summary(pl.UTF-8):	Wyświetlanie menu w środowisku MATE Desktop
 Name:		mate-menus
 Version:	1.10.0
-Release:	1
+Release:	2
 # only (unpackaged) python example is GPL
 License:	LGPL v2+
 Group:		X11/Applications
@@ -99,7 +99,7 @@ rm -rf $RPM_BUILD_ROOT
 # empty dir
 rmdir $RPM_BUILD_ROOT%{_datadir}/mate-menus
 # not supported by glibc
-%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{gn,io}
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{gn,io,ku_IQ}
 
 %find_lang %{name}
 
