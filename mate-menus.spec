@@ -18,6 +18,7 @@ BuildRequires:	gobject-introspection-devel >= 0.6.7
 BuildRequires:	intltool >= 0.40.0
 BuildRequires:	libtool >= 1:1.4.3
 BuildRequires:	mate-common >= 1.5
+BuildRequires:	pkgconfig
 BuildRequires:	python-devel >= 1:2.7
 BuildRequires:	rpm-pythonprov
 BuildRequires:	tar >= 1:1.22
