@@ -1,13 +1,13 @@
 Summary:	Displays menus for MATE Desktop
 Summary(pl.UTF-8):	Wyświetlanie menu w środowisku MATE Desktop
 Name:		mate-menus
-Version:	1.12.0
-Release:	2
+Version:	1.14.0
+Release:	1
 # only (unpackaged) python example is GPL
 License:	LGPL v2+
 Group:		X11/Applications
-Source0:	http://pub.mate-desktop.org/releases/1.12/%{name}-%{version}.tar.xz
-# Source0-md5:	bbfb8f2abb9c4abdb39cd0bfebf4f3e6
+Source0:	http://pub.mate-desktop.org/releases/1.14/%{name}-%{version}.tar.xz
+# Source0-md5:	0143cbc50fe69f9c9012c23cc007c91b
 Patch0:		xdg-menu-prefix-compat.patch
 URL:		http://wiki.mate-desktop.org/mate-menus
 BuildRequires:	autoconf >= 2.62
@@ -100,7 +100,7 @@ rm -rf $RPM_BUILD_ROOT
 # empty dir
 rmdir $RPM_BUILD_ROOT%{_datadir}/mate-menus
 # not supported by glibc
-%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{gn,io,ku_IQ}
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{frp,gn,io,jv,ku_IQ}
 
 %find_lang %{name}
 
@@ -114,6 +114,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README
 %{_sysconfdir}/xdg/menus/mate-applications.menu
+%{_sysconfdir}/xdg/menus/mate-preferences-categories.menu
 %{_sysconfdir}/xdg/menus/mate-settings.menu
 %{_datadir}/mate/desktop-directories
 
