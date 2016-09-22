@@ -1,13 +1,13 @@
 Summary:	Displays menus for MATE Desktop
 Summary(pl.UTF-8):	Wyświetlanie menu w środowisku MATE Desktop
 Name:		mate-menus
-Version:	1.14.0
+Version:	1.16.0
 Release:	1
 # only (unpackaged) python example is GPL
 License:	LGPL v2+
 Group:		X11/Applications
-Source0:	http://pub.mate-desktop.org/releases/1.14/%{name}-%{version}.tar.xz
-# Source0-md5:	0143cbc50fe69f9c9012c23cc007c91b
+Source0:	http://pub.mate-desktop.org/releases/1.16/%{name}-%{version}.tar.xz
+# Source0-md5:	ff5f8b54584b58a56d4f285cdfc60c28
 Patch0:		xdg-menu-prefix-compat.patch
 URL:		http://wiki.mate-desktop.org/mate-menus
 BuildRequires:	autoconf >= 2.62
@@ -100,7 +100,7 @@ rm -rf $RPM_BUILD_ROOT
 # empty dir
 rmdir $RPM_BUILD_ROOT%{_datadir}/mate-menus
 # not supported by glibc
-%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{frp,gn,io,jv,ku_IQ}
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{frp,jv,ku_IQ}
 
 %find_lang %{name}
 
