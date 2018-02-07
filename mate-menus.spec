@@ -1,19 +1,19 @@
 Summary:	Displays menus for MATE Desktop
 Summary(pl.UTF-8):	Wyświetlanie menu w środowisku MATE Desktop
 Name:		mate-menus
-Version:	1.18.1
+Version:	1.20.0
 Release:	1
 # only (unpackaged) python example is GPL
 License:	LGPL v2+
 Group:		X11/Applications
-Source0:	http://pub.mate-desktop.org/releases/1.18/%{name}-%{version}.tar.xz
-# Source0-md5:	96f17a5b7839840a64e58a7f48858a67
+Source0:	http://pub.mate-desktop.org/releases/1.20/%{name}-%{version}.tar.xz
+# Source0-md5:	b65e032e69621c0a66bcdf0fe674eeca
 Patch0:		xdg-menu-prefix-compat.patch
 URL:		http://wiki.mate-desktop.org/mate-menus
 BuildRequires:	autoconf >= 2.62
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	gettext-tools
-BuildRequires:	glib2-devel >= 1:2.36.0
+BuildRequires:	glib2-devel >= 1:2.50.0
 BuildRequires:	gobject-introspection-devel >= 0.6.7
 BuildRequires:	intltool >= 0.40.0
 BuildRequires:	libtool >= 1:1.4.3
@@ -36,7 +36,7 @@ Wyświetlanie menu w środowisku MATE Desktop.
 Summary:	Shared libmate-menu library
 Summary(pl.UTF-8):	Biblioteka współdzielona libmate-menu
 Group:		Libraries
-Requires:	glib2 >= 1:2.36.0
+Requires:	glib2 >= 1:2.50.0
 
 %description libs
 Shared libmate-menu library.
@@ -49,7 +49,7 @@ Summary:	Development files for libmate-menu library
 Summary(pl.UTF-8):	Pliki programistyczne biblioteki libmate-menu
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.36.0
+Requires:	glib2-devel >= 1:2.50.0
 
 %description devel
 Development files for libmate-menu library.
