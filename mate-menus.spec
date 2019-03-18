@@ -1,13 +1,13 @@
 Summary:	Displays menus for MATE Desktop
 Summary(pl.UTF-8):	Wyświetlanie menu w środowisku MATE Desktop
 Name:		mate-menus
-Version:	1.20.2
+Version:	1.22.0
 Release:	1
 # only (unpackaged) python example is GPL
 License:	LGPL v2+
 Group:		X11/Applications
-Source0:	http://pub.mate-desktop.org/releases/1.20/%{name}-%{version}.tar.xz
-# Source0-md5:	94adb0b2c01ca468b05b833e3e744d05
+Source0:	http://pub.mate-desktop.org/releases/1.22/%{name}-%{version}.tar.xz
+# Source0-md5:	8210063cf56ea7b6a9ac3411507ee0a4
 Patch0:		xdg-menu-prefix-compat.patch
 URL:		http://wiki.mate-desktop.org/mate-menus
 BuildRequires:	autoconf >= 2.62
@@ -19,11 +19,10 @@ BuildRequires:	intltool >= 0.40.0
 BuildRequires:	libtool >= 1:1.4.3
 BuildRequires:	mate-common >= 1.5
 BuildRequires:	pkgconfig
-BuildRequires:	python-devel >= 1:2.7
-BuildRequires:	rpm-pythonprov
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 Requires:	%{name}-libs = %{version}-%{release}
+Obsoletes:	python-matemenu < 1.22.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -57,18 +56,6 @@ Development files for libmate-menu library.
 %description devel -l pl.UTF-8
 Pliki programistyczne biblioteki libmate-menu.
 
-%package -n python-matemenu
-Summary:	Python binding for mate-menus library
-Summary(pl.UTF-8):	Wiązanie Pythona do biblioteki mate-menus
-Group:		Libraries/Python
-Requires:	%{name}-libs = %{version}-%{release}
-
-%description -n python-matemenu
-Python binding for mate-menus library.
-
-%description -n python-matemenu -l pl.UTF-8
-Wiązanie Pythona do biblioteki mate-menus.
-
 %prep
 %setup -q
 %patch0 -p1
@@ -82,7 +69,6 @@ Wiązanie Pythona do biblioteki mate-menus.
 %{__automake}
 %configure \
 	--enable-introspection \
-	--enable-python \
 	--disable-silent-rules \
 	--disable-static
 
@@ -94,7 +80,6 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/libmate-menu.la
-%{__rm} $RPM_BUILD_ROOT%{py_sitedir}/matemenu.la
 # just example
 %{__rm} -r $RPM_BUILD_ROOT%{_datadir}/mate-menus/examples
 # empty dir
@@ -130,7 +115,3 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/gir-1.0/MateMenu-2.0.gir
 %{_includedir}/mate-menus
 %{_pkgconfigdir}/libmate-menu.pc
-
-%files -n python-matemenu
-%defattr(644,root,root,755)
-%attr(755,root,root) %{py_sitedir}/matemenu.so

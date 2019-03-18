@@ -12,15 +12,6 @@ additionally load mate-applications.menu if XDG_MENU_PREFIX is not set, as this
 is how we package mate applications.menu.
 --- mate-menus-1.5.0/./libmenu/matemenu-tree.c~	2012-10-11 11:26:03.000000000 +0300
 +++ mate-menus-1.5.0/./libmenu/matemenu-tree.c	2013-01-15 23:41:33.733159313 +0200
-@@ -539,7 +539,7 @@
- 	{
- 		matemenu_tree_remove_menu_file_monitors (tree);
- 
--		if (strcmp(tree->basename, "mate-applications.menu") == 0 && g_getenv("XDG_MENU_PREFIX"))
-+		if (strcmp(tree->basename, "applications.menu") == 0 && g_getenv("XDG_MENU_PREFIX"))
- 		{
- 			char* prefixed_basename;
- 			prefixed_basename = g_strdup_printf("%s%s", g_getenv("XDG_MENU_PREFIX"), tree->basename);
 @@ -1895,7 +1895,7 @@
  	found = FALSE;
  	menu_file = g_strconcat(menu_name, ".menu", NULL);
@@ -30,18 +21,17 @@ is how we package mate applications.menu.
  	{
  		char* prefixed_basename;
  		prefixed_basename = g_strdup_printf("%s%s", g_getenv("XDG_MENU_PREFIX"), menu_file);
---- mate-menus-1.5.0/util/test-menu-spec.c~	2012-10-11 11:26:03.000000000 +0300
-+++ mate-menus-1.5.0/util/test-menu-spec.c	2013-01-15 23:36:26.719020435 +0200
-@@ -191,8 +191,7 @@
- 		flags |= MATEMENU_TREE_FLAGS_INCLUDE_NODISPLAY;
- 	}
+--- mate-menus-1.22.0/util/test-menu-spec.c.orig	2019-03-18 20:37:19.227541031 +0100
++++ mate-menus-1.22.0/util/test-menu-spec.c	2019-03-18 20:38:44.433638632 +0100
+@@ -216,7 +216,7 @@
+ 	if (include_unallocated)
+ 		flags |= MATEMENU_TREE_FLAGS_INCLUDE_UNALLOCATED;
  
--	// Usamos applications.menu is existe. Para compatibilidad con GNOME
--	MateMenuTree* tree = matemenu_tree_lookup(menu_file ? menu_file : "mate-applications.menu", flags);
-+	MateMenuTree* tree = matemenu_tree_lookup(menu_file ? menu_file : "applications.menu", flags);
- 
+-	tree = matemenu_tree_new(menu_file ? menu_file : "mate-applications.menu", flags);
++	tree = matemenu_tree_new(menu_file ? menu_file : "applications.menu", flags);
  	g_assert(tree != NULL);
  
+ 	if (!matemenu_tree_load_sync (tree, &error))
 --- mate-menus-1.5.0/util/mate-menus-ls.py~	2012-10-11 11:26:03.000000000 +0300
 +++ mate-menus-1.5.0/util/mate-menus-ls.py	2013-01-15 23:37:38.595663893 +0200
 @@ -72,7 +72,7 @@
