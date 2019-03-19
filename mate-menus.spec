@@ -8,7 +8,6 @@ License:	LGPL v2+
 Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.22/%{name}-%{version}.tar.xz
 # Source0-md5:	8210063cf56ea7b6a9ac3411507ee0a4
-Patch0:		xdg-menu-prefix-compat.patch
 URL:		http://wiki.mate-desktop.org/mate-menus
 BuildRequires:	autoconf >= 2.62
 BuildRequires:	automake >= 1:1.9
@@ -58,7 +57,6 @@ Pliki programistyczne biblioteki libmate-menu.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 %{__intltoolize}
