@@ -83,7 +83,7 @@ rm -rf $RPM_BUILD_ROOT
 # empty dir
 rmdir $RPM_BUILD_ROOT%{_datadir}/mate-menus
 # not supported by glibc
-%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{es_ES,frp,jv,kab,ku_IQ,nah,pms}
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{es_ES,frp,jv,ku_IQ,nah,pms}
 
 %find_lang %{name}
 
