@@ -1,13 +1,13 @@
 Summary:	Displays menus for MATE Desktop
 Summary(pl.UTF-8):	Wyświetlanie menu w środowisku MATE Desktop
 Name:		mate-menus
-Version:	1.26.0
+Version:	1.26.1
 Release:	1
 # only (unpackaged) python example is GPL
 License:	LGPL v2+
 Group:		X11/Applications
 Source0:	https://pub.mate-desktop.org/releases/1.26/%{name}-%{version}.tar.xz
-# Source0-md5:	afb5eb149f397b4dbc9713098af5eda3
+# Source0-md5:	e7deb070463ad3d1ccbbf576efdd8267
 URL:		https://wiki.mate-desktop.org/mate-desktop/components/mate-menus/
 BuildRequires:	autoconf >= 2.62
 BuildRequires:	automake >= 1:1.9
